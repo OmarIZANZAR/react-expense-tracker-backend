@@ -17,20 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1/transactions', transactionsRouter)
 
 // Base response
-// app.get('/', (req, res) => {
-//     if( process.env.NODE_ENV == "production" ){
-//         res.redirect(process.env.CLIENT_URL)
-//     } else {
-//         res.redirect('http://localhost:3000')
-//     }
-// })
-
-
-app.use(express.static('./client'))
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname,'client','index.html')
-)})
-
+app.get('/', (req, res) => {
+    if( process.env.NODE_ENV == "production" ){
+        res.redirect(process.env.CLIENT_URL)
+    } else {
+        res.redirect('http://localhost:3000')
+    }
+})
 
 // Running the server 
 const PORT = process.env.PORT || 5000;
